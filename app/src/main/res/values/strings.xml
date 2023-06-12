@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">FoodTest</string>
+    //menu
+    <string name="main_menu">Главная</string>
+    <string name="search_menu">Поиск</string>
+    <string name="basket_menu">Корзина</string>
+    <string name="account_menu">Аккаунт</string>
 </resources>
