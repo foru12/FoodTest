@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+
+    android:layout_height="wrap_content"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/categori_bg">
+        
+        
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:translationZ="10dp"
+            android:fontFamily="@font/sf_pro_display_light"
+            android:textSize="20sp"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="Пекарни и кондитерские "/>
+        
+        
+        
+        
+        
+        
+
+        <ImageView
+            android:id="@+id/categori_image_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/asd"/>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
