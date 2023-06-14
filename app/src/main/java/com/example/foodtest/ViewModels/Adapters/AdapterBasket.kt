@@ -2,25 +2,24 @@ package com.example.foodtest
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
 import com.example.foodtest.placeholder.PlaceholderContent.PlaceholderItem
-import com.example.foodtest.databinding.FragmentMainBinding
+import com.example.foodtest.databinding.FragmentBasketBinding
 
 /**
  * [RecyclerView.Adapter] that can display a [PlaceholderItem].
  * TODO: Replace the implementation with code for your data type.
  */
-class AdapterFood(
+class AdapterBasket(
     private val values: List<PlaceholderItem>
-) : RecyclerView.Adapter<AdapterFood.ViewHolder>() {
+) : RecyclerView.Adapter<AdapterBasket.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         return ViewHolder(
-            FragmentMainBinding.inflate(
+            FragmentBasketBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -37,7 +36,7 @@ class AdapterFood(
 
     override fun getItemCount(): Int = values.size
 
-    inner class ViewHolder(binding: FragmentMainBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(binding: FragmentBasketBinding) : RecyclerView.ViewHolder(binding.root) {
         val idView: TextView = binding.itemNumber
         val contentView: TextView = binding.content
 

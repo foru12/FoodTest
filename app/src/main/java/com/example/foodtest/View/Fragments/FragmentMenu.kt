@@ -13,9 +13,9 @@ import com.example.foodtest.placeholder.PlaceholderContent
 /**
  * A fragment representing a list of Items.
  */
-class FragmentMain : Fragment() {
+class FragmentMenu : Fragment() {
 
-    private var columnCount = 1
+    private var columnCount = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +29,7 @@ class FragmentMain : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_main_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_menu_list, container, false)
 
         // Set the adapter
         if (view is RecyclerView) {
@@ -38,7 +38,7 @@ class FragmentMain : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = AdapterFood(PlaceholderContent.ITEMS)
+                adapter = AdapterMenu(PlaceholderContent.ITEMS)
             }
         }
         return view
@@ -52,7 +52,7 @@ class FragmentMain : Fragment() {
         // TODO: Customize parameter initialization
         @JvmStatic
         fun newInstance(columnCount: Int) =
-            FragmentMain().apply {
+            FragmentMenu().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_COLUMN_COUNT, columnCount)
                 }
