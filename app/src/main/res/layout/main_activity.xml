@@ -10,8 +10,25 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="start"
+        app:itemIconTint="@drawable/color_item_selector"
+        app:itemTextColor="@drawable/color_item_selector"
         android:background="@color/white"
+
         app:menu="@menu/my_navigation" />
+
+
+
+    <fragment
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        />
+
+
+
+
 
 
 

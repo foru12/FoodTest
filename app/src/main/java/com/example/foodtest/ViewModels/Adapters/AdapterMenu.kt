@@ -1,48 +1,28 @@
-package com.example.foodtest
+package com.example.foodtest.ViewModels.Adapters
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-import com.example.foodtest.placeholder.PlaceholderContent.PlaceholderItem
-import com.example.foodtest.databinding.FragmentMenuBinding
 
-/**
- * [RecyclerView.Adapter] that can display a [PlaceholderItem].
- * TODO: Replace the implementation with code for your data type.
- */
 class AdapterMenu(
-    private val values: List<PlaceholderItem>
+
 ) : RecyclerView.Adapter<AdapterMenu.ViewHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
-        return ViewHolder(
-            FragmentMenuBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
     }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = values[position]
-        holder.idView.text = item.id
-        holder.contentView.text = item.content
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterMenu.ViewHolder {
+        TODO("Not yet implemented")
     }
 
-    override fun getItemCount(): Int = values.size
+    override fun onBindViewHolder(holder: AdapterMenu.ViewHolder, position: Int) {
+        TODO("Not yet implemented")
+    }
 
-    inner class ViewHolder(binding: FragmentMenuBinding) : RecyclerView.ViewHolder(binding.root) {
-        val idView: TextView = binding.itemNumber
-        val contentView: TextView = binding.content
-
-        override fun toString(): String {
-            return super.toString() + " '" + contentView.text + "'"
-        }
+    override fun getItemCount(): Int {
+        TODO("Not yet implemented")
     }
 
 }

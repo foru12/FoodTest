@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:id="@+id/my_navigation">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_navigation"
+    app:startDestination="@id/fragmentMain">
 
+
+    <fragment
+        android:id="@+id/fragmentMain"
+        android:name="com.example.foodtest.View.Fragments.FragmentMain"
+        android:label="fragment_main_list"
+        tools:layout="@layout/fragment_main_list" >
+        <action
+            android:id="@+id/action_fragmentMain_to_fragmentMenu"
+            app:destination="@id/fragmentMenu" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentBasket"
+        android:name="com.example.foodtest.View.Fragments.FragmentBasket"
+        android:label="fragment_basket_list"
+        tools:layout="@layout/fragment_basket_list" />
+    <fragment
+        android:id="@+id/fragmentMenu"
+        android:name="com.example.foodtest.View.Fragments.FragmentMenu"
+        android:label="fragment_menu_list"
+        tools:layout="@layout/fragment_menu_list" >
+        <action
+            android:id="@+id/action_fragmentMenu_to_fragmentMain"
+            app:destination="@id/fragmentMain" />
+    </fragment>
 </navigation>
