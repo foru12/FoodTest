@@ -12,15 +12,24 @@ import com.bumptech.glide.Glide
 import com.example.foodtest.Data.Сategories.Сategories
 import com.example.foodtest.R
 import com.example.foodtest.View.Fragments.FragmentCategories
+import com.example.foodtest.ViewModels.CallBack.CallBackClickCaregory
 
 
 class AdapterCategories(
 
     private val dataCategories: ArrayList<Сategories>,
-    val fragmentCategories: FragmentCategories
+    val fragmentCategories: FragmentCategories,
+    val onItemClickListener: CallBackClickCaregory
+
+
 
 
 ) : RecyclerView.Adapter<AdapterCategories.ViewHolder>() {
+
+
+
+
+
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
@@ -29,6 +38,8 @@ class AdapterCategories(
 
 
     }
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterCategories.ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_categories_item, parent, false)
@@ -49,13 +60,24 @@ class AdapterCategories(
 
 
         holder.txtName.text = data.name
+
+
+
+
         holder.itemView.setOnClickListener { v ->
+            Log.e("Click","-->" + position)
+            var a = data.id?.minus(1)
+
+            a?.let { onItemClickListener?.onclick(it) }
             // получаем позицию в адаптере, которой соответсвует холдер
             val position = holder.adapterPosition
             // если холдер соответсвует какой-либо позиции в адаптере
             if (position != RecyclerView.NO_POSITION) {
                 // уведомляем слушателя о нажатии
                 itemClicked(position,data.id )
+
+
+
 
             }
         }
@@ -72,8 +94,10 @@ class AdapterCategories(
         Navigation.findNavController(fragmentCategories.requireView()).navigate(R.id.action_fragmentMain_to_fragmentMenu);
 
 
+
     }
 
     override fun getItemCount() = dataCategories.size
+
 
 }

@@ -14,11 +14,14 @@ import com.example.foodtest.Data.Сategories.Сategories
 import com.example.foodtest.R
 import com.example.foodtest.View.Fragments.FragmentCategories
 import com.example.foodtest.View.Fragments.FragmentMenu
+import com.example.foodtest.ViewModels.CallBack.CallBackClickCaregory
+import com.example.foodtest.ViewModels.CallBack.CallBackClickMenu
 
 
 class AdapterFood(
     private val dataDishes: ArrayList<Dishes>,
-    val fragmentMenu: FragmentMenu
+    val fragmentMenu: FragmentMenu,
+    val onItemClickListener: CallBackClickMenu
 ) : RecyclerView.Adapter<AdapterFood.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -54,8 +57,13 @@ class AdapterFood(
             val position = holder.adapterPosition
             // если холдер соответсвует какой-либо позиции в адаптере
             if (position != RecyclerView.NO_POSITION) {
-                // уведомляем слушателя о нажатии
-               // itemClicked(position,data.id )
+                var a = data.id?.minus(1)
+
+                data.id?.let {
+                    onItemClickListener?.onclick(data.name,data.price.toString(),data.weight.toString(),data.description,data.imageUrl.toString(),
+                        it
+                    )
+                }
 
             }
         }

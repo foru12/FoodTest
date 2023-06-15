@@ -10,4 +10,5 @@
     <color name="color_menu_checked">#3364E0</color>
     <color name="color_menu_default">#A5A9B2</color>
     <color name="bg_color_menu">#F8F7F5</color>
+    <color name="btn_color">#3364E0</color>
 </resources>

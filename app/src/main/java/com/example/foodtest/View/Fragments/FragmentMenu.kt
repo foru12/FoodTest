@@ -2,26 +2,27 @@ package com.example.foodtest.View.Fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.foodtest.Data.CONST.CONST.BASEURL
+import com.example.foodtest.Data.CONST.CONST.BASE_URL
 import com.example.foodtest.Data.Dishes.DataDishes
 import com.example.foodtest.Data.Dishes.Dishes
 import com.example.foodtest.R
+import com.example.foodtest.View.Dialogs.DialogDescription
 import com.example.foodtest.ViewModels.API.ClientApiMenu
-import com.example.foodtest.ViewModels.Adapters.AdapterCategories
 import com.example.foodtest.ViewModels.Adapters.AdapterFood
-import com.example.foodtest.ViewModels.CallBack.CallBackRequestCategory
+import com.example.foodtest.ViewModels.CallBack.CallBackClickCaregory
+import com.example.foodtest.ViewModels.CallBack.CallBackClickMenu
 import com.example.foodtest.ViewModels.CallBack.CallBackRequestMenu
 
 
-class FragmentMenu : Fragment(), CallBackRequestMenu {
+class FragmentMenu : Fragment(), CallBackRequestMenu , CallBackClickMenu {
     val restClientApiMenu = ClientApiMenu()
     private var menuArrayList: ArrayList<Dishes>? = null
     private var myAdapter: AdapterFood? = null
@@ -33,7 +34,7 @@ class FragmentMenu : Fragment(), CallBackRequestMenu {
         super.onCreate(savedInstanceState)
 
 
-        restClientApiMenu.execute(BASEURL,this)
+        restClientApiMenu.execute(BASE_URL,this)
 
        /* btnCustomDialog.setOnClickListener {
             CustomDialogFragment.newInstance(
@@ -62,7 +63,7 @@ class FragmentMenu : Fragment(), CallBackRequestMenu {
         Log.e("Data","--->" + response?.dishes)
 
         menuArrayList = response?.dishes?.let { ArrayList(it) }
-        myAdapter = AdapterFood(menuArrayList!!, this)
+        myAdapter = AdapterFood(menuArrayList!!, this,this)
         recyclerView.adapter = myAdapter
 
 
@@ -70,6 +71,24 @@ class FragmentMenu : Fragment(), CallBackRequestMenu {
 
     override fun errorReq(error: String?) {
        Toast.makeText(context,error,Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onclick(name: String?,price:String?,weight: String?,desk:String?,urlIm:String,id:Int) {
+
+
+        Log.e("Вы в fragment Menu и ваша позиция", "--->" + "\n" + name + "\n" + price+ "\n" + weight+ "\n" + desk+ "\n" + urlIm+ "\n" + id)
+        openDialod(name,price,weight,desk,urlIm,id)
+
+    }
+
+    private fun openDialod(name: String?,price:String?,weight: String?,desk:String?,urlIm:String,id:Int) {
+
+        val dialogFragment: DialogDescription? =
+            DialogDescription().newInstance(name,price,weight,desk,urlIm,id)
+        val fm: FragmentManager? = activity?.getSupportFragmentManager()
+        fm?.let { dialogFragment?.show(it,"") }
+
+
     }
 
 
