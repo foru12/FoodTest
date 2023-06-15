@@ -3,6 +3,7 @@ package com.example.foodtest.View.Dialogs
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.CancellationSignal.OnCancelListener
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +14,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
+import com.example.foodtest.Basket.DataBasket
 import com.example.foodtest.R
+import com.example.foodtest.ViewModels.CallBack.CallBackBasket
+import com.example.foodtest.ViewModels.CallBack.CallBackClickCaregory
 
 
-open class DialogDescription  : DialogFragment() {
+open class DialogDescription( val callBackBasket: CallBackBasket)  : DialogFragment() {
 
 
     private lateinit var  menuImage: ImageView
@@ -26,8 +30,8 @@ open class DialogDescription  : DialogFragment() {
     private lateinit var  txtDescription: TextView
     private lateinit var  btnAddBasket: Button
 
-    open fun newInstance(name: String?,price:String?,weight: String?,desk:String?,urlIm:String,id:Int): DialogDescription? {
-        val frag = DialogDescription()
+    open fun newInstance(name: String?,price:String?,weight: String?,desk:String?,urlIm:String,id:Int,callBackBasket: CallBackBasket): DialogDescription? {
+        val frag = DialogDescription(callBackBasket)
         val args = Bundle()
 
         args.putString("name", name)
@@ -73,15 +77,26 @@ open class DialogDescription  : DialogFragment() {
 
         btnAddBasket.setOnClickListener {
             Log.e("Basket","Add")
-            
+
+            getArguments()?.getString("urlIm")?.let { it1 ->
+                getArguments()?.getString("name")?.let { it2 ->
+                    getArguments()?.getString("price")?.let { it3 ->
+                        getArguments()?.getString("weight")?.let { it4 ->
+                            callBackBasket.onAdditem(
+                                it1,
+                                it2,
+                                it3,
+                                it4
+                            )
+                        }
+                    }
+                }
+            }
+
+
+
             dialog?.dismiss()
         }
-
-        val args = Bundle()
-        args.getString("name")
-
-
-
 
         txtname.text =  getArguments()?.getString("name")
         txtPrice.text =  getArguments()?.getString("price")
@@ -98,6 +113,8 @@ open class DialogDescription  : DialogFragment() {
 
 
     }
+
+
 
     override fun onStart() {
         super.onStart()

@@ -32,20 +32,7 @@ class FragmentMenu : Fragment(), CallBackRequestMenu , CallBackClickMenu {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         restClientApiMenu.execute(BASE_URL,this)
-
-       /* btnCustomDialog.setOnClickListener {
-            CustomDialogFragment.newInstance(
-                getString(R.string.custom_dialog_title),
-                getString(R.string.custom_dialog_subTitle)
-            ).show(supportFragmentManager, CustomDialogFragment.TAG)
-
-
-        }
-*/
-
     }
 
     override fun onCreateView(
@@ -84,7 +71,7 @@ class FragmentMenu : Fragment(), CallBackRequestMenu , CallBackClickMenu {
     private fun openDialod(name: String?,price:String?,weight: String?,desk:String?,urlIm:String,id:Int) {
 
         val dialogFragment: DialogDescription? =
-            DialogDescription().newInstance(name,price,weight,desk,urlIm,id)
+            DialogDescription(FragmentBasket()).newInstance(name,price,weight,desk,urlIm,id,FragmentBasket())
         val fm: FragmentManager? = activity?.getSupportFragmentManager()
         fm?.let { dialogFragment?.show(it,"") }
 
